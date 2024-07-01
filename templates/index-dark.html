@@ -112,8 +112,8 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="index.html">
-                        <img src="{% static 'assets/img/logo-light.png' %}" class="logo logo-display" alt="Logo">
-                        <img src="{% static 'assets/img/logo-light.png' %}" class="logo logo-scrolled" alt="Logo">
+                        <img src="{{base.logo.url}}" class="logo logo-display" alt="Logo">
+                        <img src="{{base.logo}}" class="logo logo-scrolled" alt="Logo">
                     </a>
                 </div>
                 <!-- End Header Navigation -->
@@ -292,8 +292,8 @@
 
     <!-- Start Banner Area 
     ============================================= -->
-   <div class="banner-style-four-area text-light text-center bg-cover" style="background-image: url({% static 'assets/img/banner/14.jpg' %});">
-    <div class="banner-style-four-content shadow dark">
+   <div class="banner-style-four-area text-light text-center bg-cover" style="background-image: url({{base.banner.url}});">
+    <div class="banner-style-four-content shadow dark"> 
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
@@ -383,53 +383,25 @@
                         </div>
 
                         <div class="food-cat-items">
-                            <h2 class="flex-title mb-35"><img src="{% static 'assets/img/shape/fire.png' %}" alt="Image Not Found"> Наша популярная категория</h2>
+                            <h2 class="flex-title mb-35"><img src="{% static 'assets/img/shape/fire.png' %}" alt="Image Not Found">популярные категория</h2>
                             <div class="food-cat-carousel swiper">
                                 <!-- Additional required wrapper -->
                                 <div class="swiper-wrapper">
                                     <!-- Single Item -->
-                                    <div class="swiper-slide">
-                                        <a href="#">
-                                            <img src="{% static 'assets/img/menu/25.jpg' %}" alt="Image Not Found">
-                                            <div class="overlay">
-                                                <span>Основные блюда</span>
-                                                <h5>Цыпленок Альфредо</h5>
-                                            </div>
-                                        </a>
-                                    </div>
+                                   
                                     <!-- End Single Item -->
                                     <!-- Single Item -->
+                                    {% for category in category %}
                                     <div class="swiper-slide">
                                         <a href="#">
-                                            <img src="{% static 'assets/img/menu/26.jpg' %}" alt="Image Not Found">
+                                            <img src="{{category.photo.url}}" width="150px" height="150px" alt="Image Not Found">
                                             <div class="overlay">
-                                                <span>Десерты</span>
-                                                <h5>Сырники</h5>
+                                                <span>{{category.title}}</span>
+                                                <h5>{{category.descripton}}</h5>
                                             </div>
                                         </a>
                                     </div>
-                                    <!-- End Single Item -->
-                                    <!-- Single Item -->
-                                    <div class="swiper-slide">
-                                        <a href="#">
-                                            <img src="{% static 'assets/img/menu/27.jpg' %}" alt="Image Not Found">
-                                            <div class="overlay">
-                                                <span>морепродукты</span>
-                                                <h5>Жаркое из лосося</h5>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- End Single Item -->
-                                    <!-- Single Item -->
-                                    <div class="swiper-slide">
-                                        <a href="#">
-                                            <img src="{% static 'assets/img/menu/28.jpg' %}" alt="Image Not Found">
-                                            <div class="overlay">
-                                                <span>Напиток</span>
-                                                <h5>Горячий шоколад</h5>
-                                            </div>
-                                        </a>
-                                    </div>
+                                    {% endfor %}
                                     <!-- End Single Item -->
                                 </div>
     
@@ -1320,34 +1292,34 @@
     ============================================= -->
     <div class="chef-area default-padding bg-gray text-center">
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="site-heading text-center">
-                        <h4 class="sub-title">ШЕФ-ПОВАРА</h4>
-                        <h2 class="title">Познакомьтесь с нашими Особенными Шеф-поварами</h2>
+                        <h4 class="sub-title">Лучшие повара</h4>
+                        <h2 class="title">Познакомьтесь с нашими  Шеф-поварами</h2>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <!-- Single Item -->
+                {% for chefs in chef %}
                 <div class="col-xl-4 col-lg-6">
                     <div class="chef-style-one">
                         <div class="chef-thumb">
-                            <img src="{% static 'assets/img/team/1.jpg' %}" alt="Image Not Found">
+                            <img src="{{chefs.photo.url}}"alt="Image Not Found">
                             <div class="info">
-                                <h4><a href="#">Александр Петрилло</a></h4>
-                                <span>Помощник начальника</span>
+                                <h4><a href="#">{{chefs.name}}</a></h4>
+                                <span>{{chefs.type}}</span>
                             </div>
                             <ul class="social">
                                 <li>
-                                    <a href="#">
+                                    <a href="{{chefs.facebook}}">
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{chefs.yootube}}">
                                         <i class="fab fa-youtube"></i>
                                     </a>
                                 </li>
@@ -1355,56 +1327,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- End Single Item -->
-                <!-- Single Item -->
-                <div class="col-xl-4 col-lg-6">
-                    <div class="chef-style-one">
-                        <div class="chef-thumb">
-                            <img src="{% static 'assets/img/team/2.jpg' %}" alt="Image Not Found">
-                            <div class="info">
-                                <h4><a href="#">Мендия Юксеф</a></h4>
-                                <span>Бургер Кинг</span>
-                            </div>
-                            <ul class="social">
-                                <li>
-                                    <a href="#">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fab fa-youtube"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Single Item -->
-                <!-- Single Item -->
-                <div class="col-xl-4 col-lg-6">
-                    <div class="chef-style-one">
-                        <div class="chef-thumb">
-                            <img src="{% static 'assets/img/team/3.jpg' %}" alt="Image Not Found">
-                            <div class="info">
-                                <h4><a href="#">Петро Уильям</a></h4>
-                                <span>Главный шеф-повар</span>
-                            </div>
-                            <ul class="social">
-                                <li>
-                                    <a href="#">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fab fa-youtube"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
                 <!-- End Single Item -->
             </div>
         </div>
@@ -1424,55 +1347,32 @@
                 </div>
             </div>
             <div class="row">
+                {% for news in news_all %}
                 <!-- Single Item -->
                 <div class="col-lg-6">
                     <div class="home-blog-style-one-item">
-                        <img src="{% static 'assets/img/blog/1.jpg' %}" alt="Image not Found">
+                        <img src="{{news.image.url}}" alt="Image not Found">
                         <div class="content">
                             <div class="info">
-                                <div class="date"><strong>24</strong> Dec</div>
+                                <div class="date"><strong>{{news.date_to}}</strong>{{news.date_form}}</div>
                                 <ul class="blog-meta">
                                     <li>
-                                        By <a href="#">Доктор медицинских наук Сохаг</a>
+                                        {{news.title}}
                                     </li>
                                     <li>
-                                        <a href="#">Бутерброд</a> ,
-                                        <a href="#">Еда</a>
+                                        <a href="#">{{news.food1}}</a> ,
+                                        <a href="#">{{news.food2}}</a>
                                     </li>
                                 </ul>
                                 <h4 class="title">
-                                    <a href="#">Взяла брюссельский бургер с капустой и ветчиной</a>
+                                    <a href="#">{{news.descriptions}}</a>
                                 </h4>
                                 <a href="#" class="btn-read-more">подробнее <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- End Single Item -->
-                <!-- Single Item -->
-                <div class="col-lg-6">
-                    <div class="home-blog-style-one-item">
-                        <img src="{% static 'assets/img/blog/2.jpg' %}" alt="Image not Found">
-                        <div class="content">
-                            <div class="info">
-                                <div class="date"><strong>18</strong> Nov</div>
-                                <ul class="blog-meta">
-                                    <li>
-                                        By <a href="#">Доктор медицинских наук Сохаг</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Пицца</a> ,
-                                        <a href="#">Food</a>
-                                    </li>
-                                </ul>
-                                <h4 class="title">
-                                    <a href="#">Этот сборный пассивный дом отличается высокой экологичностью</a>
-                                </h4>
-                                <a href="#" class="btn-read-more">подробнее <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
                 <!-- End Single Item -->
             </div>
         </div>
